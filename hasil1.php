@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US"><head><!-- Created by Artisteer v4.3.0.60745 -->
     <meta charset="utf-8">
-    <title>Sistem Pakar Penyakit Anjing</title>
+    <title>Implementasi Sistem Pakar 
+untuk Diagnosis Penyakit Hipertensi 
+dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
     <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width">
 
     <!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -34,7 +36,11 @@
             </div>
 
 <h1 class="art-headline">
-    <a href="/">Sistem Pakar Penyakit Anjing</a>
+    <a href="/">Implementasi Sistem Pakar</a>
+	<br>
+	<a href="/">untuk Diagnosis Penyakit Hipertensi</a>
+	<br>
+	<a href="/">dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</a>
 </h1>
 <h2 class="art-slogan"></h2>
 
@@ -108,9 +114,9 @@ $gejala=_tampil_gejala($_GET['id']);
     </div>
 <footer class="art-footer">
   <div class="art-footer-inner">
-<p><a href="#">Privacy Policy</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">TOS</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Feedback</a></p>
+<p>a href="#">Fakultas Teknik Informatika</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Universitas Telkom</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">2016</a></p>
 <br>
-<p>Copyright © 2015. All Rights Reserved.&nbsp;</p>
+<p>Oleh : Nabila Farapasyet -- 103114259 &nbsp;</p>
 <br>
 <br>
     <p class="art-page-footer">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US"><head><!-- Created by Artisteer v4.3.0.60745 -->
     <meta charset="utf-8">
-    <title>Sistem Pakar Penyakit Anjing</title>
+    <title></title>
     <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width">
 
     <!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -34,7 +34,11 @@
             </div>
 
 <h1 class="art-headline">
-    <a href="/">Sistem Pakar Penyakit Anjing</a>
+    <a href="/">Implementasi Sistem Pakar</a>
+	<br>
+	<a href="/">untuk Diagnosis Penyakit Hipertensi</a>
+	<br>
+	<a href="/">dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</a>
 </h1>
 <h2 class="art-slogan"></h2>
 
@@ -69,7 +73,7 @@ $nilai_cf=_hit_cf($_GET['id']);
 	<table style="border:none;">
     	<tr>
         <td colspan="2" height="50px" style="border:none; margin:10px; "><font size="+2" face="MS Serif, New York, serif">
-	Dari gejala yang anda pilih sebelumnya dapat kami simpulkan bawah anjing anda mengalami</font>
+	Dari gejala yang anda pilih sebelumnya dapat kami simpulkan bawah pasien anda mengalami</font>
     	</td>
         </tr>
         <tr>
@@ -132,24 +136,19 @@ $nilai_cf=_hit_cf($_GET['id']);
 </article></div>
                         <div class="art-layout-cell art-sidebar1"><div class="art-block clearfix">
         <div class="art-blockheader">
-            <h3 class="t">Follow US</h3>
+            <h3 class="t"> </h3>
         </div>
-        <div class="art-blockcontent"><p><img width="60" height="60" alt="" src="images/rss-2.png">&nbsp;<img width="60" height="60" alt="" src="images/facebook-2.png" class="">&nbsp;<img width="60" height="60" alt="" src="images/twitter-2.png">&nbsp;<img width="60" height="60" alt="" src="images/youtube-2.png" class=""></p></div>
-</div><div class="art-block clearfix">
+        
+		<div class="art-block clearfix">
         <div class="art-blockheader">
-            <h3 class="t">Featured Photo</h3>
+            <h3 class="t"> </h3>
         </div>
-        <div class="art-blockcontent"><p><img width="253" height="168" alt="" src="images/shutterstock_38529010.jpg" class=""></p></div>
-</div><div class="art-block clearfix">
+        
+		<div class="art-block clearfix">
         <div class="art-blockheader">
-            <h3 class="t">Featured Video</h3>
+            <h3 class="t"> </h3>
         </div>
-        <div class="art-blockcontent"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="253" height="214"><param name="allowFullScreen" value="true">
-<param name="allowscriptaccess" value="always">
-<param name="movie" value="http://www.youtube.com/v/89kKUeT2sxk">
-<!--[if !IE]>          --><object type="application/x-shockwave-flash" data="http://www.youtube.com/v/89kKUeT2sxk" width="253" height="214"><param name="allowFullScreen" value="true">
-<param name="allowscriptaccess" value="always">
-<!--<![endif]          --><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"></a><!--[if !IE]>          --></object> <!--<![endif]          --></object></div>
+        
 </div></div>
                     </div>
                 </div>
@@ -157,9 +156,9 @@ $nilai_cf=_hit_cf($_GET['id']);
     </div>
 <footer class="art-footer">
   <div class="art-footer-inner">
-<p><a href="#">Privacy Policy</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">TOS</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Feedback</a></p>
+<p><a href="#">Fakultas Teknik Informatika</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Universitas Telkom</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">2016</a></p>
 <br>
-<p>Copyright © 2015. All Rights Reserved.&nbsp;</p>
+<p>Oleh : Nabila Farapasyet -- 103114259 &nbsp;</p>
 <br>
 <br>
     <p class="art-page-footer">
