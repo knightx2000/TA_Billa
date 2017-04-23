@@ -474,6 +474,15 @@ function selected($t1, $t2) {
 
 ///////////////////////////////////////////////////cf
 function _hit_cf($id_penyakit){
+	//tester
+	/*
+	$sqlTest="select tb_gejala.nama_gejala from tb_gejala,tb_aturan where tb_aturan.id_penyakit='".$id_penyakit."' AND tb_aturan.id_gejala=tb_gejala.id_gejala";
+	$resultTest=mysql_query($sqlTest)or die(mysql_error());
+	while($dataTest=mysql_fetch_array($resultTest)){
+		print_r($dataTest);
+	}
+	*/
+	///////////////////////////////////////////////
 	$sql="select tb_gejala.nilai_cf from tb_gejala,tb_aturan where tb_aturan.id_penyakit='".$id_penyakit."' AND tb_aturan.id_gejala=tb_gejala.id_gejala";
 	$result=mysql_query($sql)or die(mysql_error());
 	$tempnilai="";
@@ -484,27 +493,27 @@ function _hit_cf($id_penyakit){
 	$hasil_akhir="";
 	while($data=mysql_fetch_array($result)){
 		$nilai[]=$data['nilai_cf'];
-	
+		//print_r($data);
 	}
 	
 	//print_r($nilai);
+	
 	$jml_data=count($nilai)-1;
 	$z=0;
 	for($x=0;$x<=$jml_data;$x++){
 		
 		if($x==0){
 			$hasil_akhir[]=$nilai[$x]+($nilai[$x+1]*(1-$nilai[$x]));//nilai awal
-$z=0;
-$x=$x+1;
+			$z=0;
+			$x=$x+1;
 		}else{
-//$z=$x+1
-//echo $x;
-$z=count($hasil_akhir)-1;
-//echo $z;
+			//$z=$x+1
+			//echo $x;
+			$z=count($hasil_akhir)-1;
+			//echo $z;
 			$hasil_akhir[]=$nilai[$x]+($hasil_akhir[$z]*(1-$nilai[$x]));
 	
 		}
-
 
 	}
 	
@@ -515,8 +524,8 @@ $z=count($hasil_akhir)-1;
 	}else{
 		$nilai_final=$hasil_akhir[$jml_ar-1];
 	}
-	//echo $nilai_final;
-	//echo $hasil;
+	//echo "Nilai Final =".$nilai_final;
+	//echo "hasil =".$hasil;
 	return $nilai_final;
 }
 

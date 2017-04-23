@@ -91,7 +91,7 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 			// echo "<input type='radio' name='idpertanyaan' value='".$data['bila_salah']."'>Tidak<br>";
 			// echo "<input type='submit' value='Lanjut ' >";		
 			// echo "</form>";
-			// echo "<p>copyright &copy; Juni 2010, by David, S.Kom., M.Cs.</p>";
+			
 
 									echo '
 										<div class="span5"> <div class="alert alert-info">
