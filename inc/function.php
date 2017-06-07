@@ -276,11 +276,12 @@ function _tampil_gejala($id){
 			$result=mysql_query($sql);
 			$data=mysql_fetch_array($result);
 			$respon=$data['nama_gejala'];*/
-			$sql="select id_gejala from tb_aturan where id_penyakit='".$id."'";
+			
+			//$sql="select id_gejala from tb_aturan where id_penyakit='".$id."'";
+			$sql="select tb_diagnosa.id_gejala from tb_diagnosa";
 			$result=mysql_query($sql)or die(mysql_error());
 			while($data=mysql_fetch_array($result)){
 				$respon[]=$data['id_gejala'];
-				
 			}
 			
 		}
@@ -482,8 +483,16 @@ function _hit_cf($id_penyakit){
 		print_r($dataTest);
 	}
 	*/
+	/*
+	$sqlTest="select tb_gejala.nama_gejala from tb_gejala,tb_diagnosa where tb_diagnosa.id_gejala=tb_gejala.id_gejala";
+	$resultTest=mysql_query($sqlTest)or die(mysql_error());
+	while($dataTest=mysql_fetch_array($resultTest)){
+		print_r($dataTest);
+	}
+	*/
 	///////////////////////////////////////////////
-	$sql="select tb_gejala.nilai_cf from tb_gejala,tb_aturan where tb_aturan.id_penyakit='".$id_penyakit."' AND tb_aturan.id_gejala=tb_gejala.id_gejala";
+	//$sql="select tb_gejala.nilai_cf from tb_gejala,tb_aturan where tb_aturan.id_penyakit='".$id_penyakit."' AND tb_aturan.id_gejala=tb_gejala.id_gejala";
+	$sql="select tb_gejala.nilai_cf from tb_gejala,tb_diagnosa where tb_diagnosa.id_gejala=tb_gejala.id_gejala";
 	$result=mysql_query($sql)or die(mysql_error());
 	$tempnilai="";
 	$i=0;

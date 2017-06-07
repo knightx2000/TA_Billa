@@ -75,6 +75,9 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
                                 <div class="art-postcontent art-postcontent-0 clearfix"><p>
                                 <?php
 								if(!isset($_GET['id_gejala'])){
+									$sqltruncate = "TRUNCATE TABLE `tb_diagnosa`";
+									$ekse = mysql_query($sqltruncate);
+
 									$sql="select * from tb_gejala where mulai='Y'";
 									$result=mysql_query($sql);
 									$data=mysql_fetch_array($result);
@@ -121,8 +124,11 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 									
 								}else{
 									$idsolusi=$_GET['id_gejala'];
+									$sqlinsert = "INSERT INTO `hipertensiexpertsystem`.`tb_diagnosa` (`id_aturan`, `id_gejala`) VALUES ('', '".$idsolusi."')";
+									if(!ereg("P",$_GET['id_gejala'])){
+										$ekse=mysql_query($sqlinsert);
+									}
 									$sqlp = "select * from tb_gejala where id_gejala='".$idsolusi."'";
-			
 									$rs=mysql_query($sqlp);
 
 									$data=mysql_fetch_array($rs);
@@ -133,7 +139,7 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 									echo '</br><div class=" well">';
 									echo "<h1>Apakah anda mengalami ".$data['nama_gejala']."?</h1></center><br>";
 									echo '</div>';
-			// echo "<a href='' class='btn btn-success btn-large btn-block' /> Kembali Melakukan Diagnosa </a>";
+									// echo "<a href='' class='btn btn-success btn-large btn-block' /> Kembali Melakukan Diagnosa </a>";
 
 									//if($data['selesai']!="Y"){
 									if(ereg("P",$_GET['id_gejala'])){
@@ -157,7 +163,7 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 										';
 
 										echo "<input type='radio' name='id_gejala' value='".$data['jika_ya']."'>
-											Benar<br>";
+											  Benar<br>";
 										echo '
 										</div>
 										</div>
@@ -173,10 +179,13 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 										</div>
 										</div>
 										</div>';
-			if(ereg("Z",$_GET['id_gejala'])){
-										echo '<script> window.location.href="hasil1.php?id='.$_GET['id_gejala'].'" </script>';
-										echo "<a href='konsultasi.php' class='btn  btn-block btn-large' /> <H1>Kembali Melakukan Diagnosa</H1> </a>
-										";}
+										
+										if(ereg("Z",$_GET['id_gejala']))
+										{
+											echo '<script> window.location.href="hasil1.php?id='.$_GET['id_gejala'].'" </script>';
+											echo "<a href='konsultasi.php' class='btn  btn-block btn-large' /> <H1>Kembali Melakukan Diagnosa</H1> </a>
+											";
+										}
 										echo "<input type='submit' class='btn btn-primary btn-block btn-large' value='Lanjut ' >";
 										//}
 									}
