@@ -56,14 +56,9 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 	<a href="#">dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</a>
 </h1>
 <h2 class="art-slogan"></h2>
-
-
-
-
-
-                        
-                    
+                   
 </header>
+
 <div class="art-sheet clearfix">
             <div class="art-layout-wrapper">
                 <div class="art-content-layout">
@@ -81,6 +76,9 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 									$sql="select * from tb_gejala where mulai='Y'";
 									$result=mysql_query($sql);
 									$data=mysql_fetch_array($result);
+									
+									$sqlinsert = "INSERT INTO `hipertensiexpertsystem`.`tb_diagnosa` (`id_aturan`, `id_gejala`) VALUES ('', '".$data['id_gejala']."')";
+									$ekse=mysql_query($sqlinsert);
 									
 									echo "<form>";
 									//echo "<legend>DIAGNOSA <small> Mari mulai Mendiagnosa </small></legend>";
@@ -162,8 +160,7 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 											<div class="controls" style="margin-left:150px;">
 										';
 
-										echo "<input type='radio' name='id_gejala' value='".$data['jika_ya']."'>
-											  Benar<br>";
+										echo "<input type='radio' name='id_gejala' value='".$data['jika_ya']."'>Benar<br>";
 										echo '
 										</div>
 										</div>
