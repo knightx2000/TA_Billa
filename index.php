@@ -36,9 +36,11 @@ session_start();
 <header class="art-header">
 
     <div class="art-shapes">
-        <div class="art-object0"></div>
+        <div class="art-object0">
+		
+		</div>
 
-            </div>
+	</div>
 
 <h1 class="art-headline">
     <a href="#">Implementasi Sistem Pakar</a>

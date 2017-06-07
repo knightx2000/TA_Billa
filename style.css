@@ -414,7 +414,7 @@ li p, .art-postcontent li p, .art-blockcontent li p
     margin-left: -550px;
     top: -343px;
     width: 550px;
-    height: 643px;
+    height: 343px;
     background-image: url('images/object0.png');
     background-position: 0 0;
     background-repeat: no-repeat;
@@ -928,7 +928,7 @@ ul.art-hmenu ul
    border:1px solid transparent;
    margin:0 auto;
    background-repeat: no-repeat;
-   height: 300px;
+   height: 220px;
    position:relative;
    background-image: url('images/header.jpg');
    background-position: center top;
