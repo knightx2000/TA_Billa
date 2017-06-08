@@ -64,23 +64,30 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
                 <div class="art-content-layout">
                     <div class="art-content-layout-row">
                         <div class="art-layout-cell art-content"><article class="art-post art-article">
-                                
-                                
-                                                
                                 <div class="art-postcontent art-postcontent-0 clearfix"><p>
                                 <?php
-								if(!isset($_GET['id_gejala'])){
+								//$selected_options = explode(",", $_POST["id_gejala"]);
+								//$prev_gejala = $selected_options[0];
+								//$prev_selected = $selected_options[1];
+								//$curr_gejala = $selected_options[2];
+								//echo ($selected_options[0]."\n");
+								//echo ($selected_options[1]."\n");
+								//echo ($selected_options[2]."\n");
+								
+								//if(isset($_POST['SubmitButton'])){ //check if form was submitted
+								//  $input = $_POST['id_gejala']; //get input text
+								  //$message = "Success! You entered: ".$input;
+								  //echo ($message);
+								//}    
+								if(!isset($_POST['id_gejala'])){
 									$sqltruncate = "TRUNCATE TABLE `tb_diagnosa`";
 									$ekse = mysql_query($sqltruncate);
 
 									$sql="select * from tb_gejala where mulai='Y'";
 									$result=mysql_query($sql);
 									$data=mysql_fetch_array($result);
-									
-									$sqlinsert = "INSERT INTO `hipertensiexpertsystem`.`tb_diagnosa` (`id_aturan`, `id_gejala`) VALUES ('', '".$data['id_gejala']."')";
-									$ekse=mysql_query($sqlinsert);
-									
-									echo "<form>";
+																		
+									echo "<form method='post'>";
 									//echo "<legend>DIAGNOSA <small> Mari mulai Mendiagnosa </small></legend>";
 									echo "<center>";
 									echo '</br><div class=" well">';
@@ -100,8 +107,7 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 										<div class="controls" style="margin-left:150px;">
 									';
 
-									echo "<input type='radio' name='id_gejala' value='".$data['jika_ya']."'>
-											Benar<br>";
+									echo "<input type='radio' name='id_gejala' value='".$data['id_gejala'].','."ya".','.$data['jika_ya']."'>Benar<br>";
 											echo '
 										</div>
 										</div>
@@ -111,27 +117,37 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 										<div class="control-group "> 
 										<div class="controls" style="margin-left:150px;">
 									';
-									echo "<input type='radio' name='id_gejala' value='".$data['jika_tidak']."'>Tidak<br>";
+									echo "<input type='radio' name='id_gejala' value='".$data['id_gejala'].','."tidak".','.$data['jika_tidak']."'>Tidak<br>";
 									echo '
 									</div>
 									</div>
 									</div>
 									</div>';
 			
-									echo "<input type='submit' class='btn btn-primary btn-block btn-large' value='Lanjut ' >";
+									echo "<input type='submit' name='SubmitButton' class='btn btn-primary btn-block btn-large' value='Lanjut ' >";
 									
 								}else{
-									$idsolusi=$_GET['id_gejala'];
-									$sqlinsert = "INSERT INTO `hipertensiexpertsystem`.`tb_diagnosa` (`id_aturan`, `id_gejala`) VALUES ('', '".$idsolusi."')";
-									if(!ereg("P",$_GET['id_gejala'])){
+									$selected_options = explode(",", $_POST["id_gejala"]);
+									$prev_gejala = $selected_options[0];
+									$prev_selected = $selected_options[1];
+									$curr_gejala = $selected_options[2];
+									//echo ($selected_options[0]."\n");
+									//echo ($selected_options[1]."\n");
+									//echo ($selected_options[2]."\n");
+									
+									$idsolusi=$curr_gejala;
+									
+									if($prev_selected == "ya"){
+										$sqlinsert = "INSERT INTO `hipertensiexpertsystem`.`tb_diagnosa` (`id_aturan`, `id_gejala`) VALUES ('', '".$prev_gejala."')";
 										$ekse=mysql_query($sqlinsert);
 									}
+									
 									$sqlp = "select * from tb_gejala where id_gejala='".$idsolusi."'";
 									$rs=mysql_query($sqlp);
 
 									$data=mysql_fetch_array($rs);
 			
-									echo "<form>";
+									echo "<form method='post'>";
 									//echo "<legend>DIAGNOSA <small> Mari mulai Mendiagnosa </small></legend>";
 									echo "<center>";
 									echo '</br><div class=" well">';
@@ -140,15 +156,20 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 									// echo "<a href='' class='btn btn-success btn-large btn-block' /> Kembali Melakukan Diagnosa </a>";
 
 									//if($data['selesai']!="Y"){
-									if(ereg("P",$_GET['id_gejala'])){
-										echo '<script> window.location.href="hasil.php?id='.$_GET['id_gejala'].'" </script>';
+									if(ereg("P",$_POST['id_gejala'])){
+										$selected_options = explode(",", $_POST["id_gejala"]);
+										$prev_gejala = $selected_options[0];
+										$prev_selected = $selected_options[1];
+										$curr_gejala = $selected_options[2];
+									
+										echo '<script> window.location.href="hasil.php?id='.$curr_gejala.'" </script>';
 										echo "<a href='konsultasi.php' class='btn  btn-block btn-large' /> <H1>Kembali Melakukan Diagnosa</H1> </a>
 										";
 										
 				
 									}else{
-										//if(ereg("P",$_GET['id_gejala'])){
-										/*echo '<script> window.location.href="hasil.php?id='.$_GET['id_gejala'].'" </script>';
+										//if(ereg("P",$_POST['id_gejala'])){
+										/*echo '<script> window.location.href="hasil.php?id='.$_POST['id_gejala'].'" </script>';
 										echo "<a href='konsultasi.php' class='btn  btn-block btn-large' /> <H1>Kembali Melakukan Diagnosa</H1> </a>
 										";*/
 										//echo "hohoho";	
@@ -160,7 +181,7 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 											<div class="controls" style="margin-left:150px;">
 										';
 
-										echo "<input type='radio' name='id_gejala' value='".$data['jika_ya']."'>Benar<br>";
+										echo "<input type='radio' name='id_gejala' value='".$data['id_gejala'].','."ya".','.$data['jika_ya']."'>Benar<br>";
 										echo '
 										</div>
 										</div>
@@ -170,20 +191,20 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 										<div class="control-group "> 
 										<div class="controls" style="margin-left:150px;">
 										';
-										echo "<input type='radio' name='id_gejala' value='".$data['jika_tidak']."'>Tidak<br>";
+										echo "<input type='radio' name='id_gejala' value='".$data['id_gejala'].','."tidak".','.$data['jika_tidak']."'>Tidak<br>";
 										echo '
 										</div>
 										</div>
 										</div>
 										</div>';
 										
-										if(ereg("Z",$_GET['id_gejala']))
+										if(ereg("Z",$_POST['id_gejala']))
 										{
-											echo '<script> window.location.href="hasil1.php?id='.$_GET['id_gejala'].'" </script>';
+											echo '<script> window.location.href="hasil1.php?id='.$_POST['id_gejala'].'" </script>';
 											echo "<a href='konsultasi.php' class='btn  btn-block btn-large' /> <H1>Kembali Melakukan Diagnosa</H1> </a>
 											";
 										}
-										echo "<input type='submit' class='btn btn-primary btn-block btn-large' value='Lanjut ' >";
+										echo "<input type='submit' name='SubmitButton' class='btn btn-primary btn-block btn-large' value='Lanjut ' >";
 										//}
 									}
 									echo "</form>";		
