@@ -65,7 +65,7 @@ $kategori=_tampil_kategori($_GET['id']);
 $gejala=_tampil_gejala($_GET['id']);
 $solusi=_tampil_solusi($_GET['id']);
 $obat=_tampil_obat($_GET['id']);
-$nilai_cf=_hit_cf($_GET['id']);
+$nilai_cf=_hit_cf2($_GET['id']);
 ?>
 <div class="container">
 <center>
@@ -73,22 +73,11 @@ $nilai_cf=_hit_cf($_GET['id']);
 	<table style="border:none;">
     	<tr>
         <td colspan="2" height="50px" style="border:none; margin:10px; "><font size="+2" face="MS Serif, New York, serif">
-	Dari gejala yang anda pilih sebelumnya dapat kami simpulkan bawah pasien anda mengalami</font>
+	Dari gejala yang anda pilih sebelumnya dapat kami simpulkan bawah pasien anda mengalami gejala-gejala sebagai berikut :</font>
     	</td>
         </tr>
-        <tr>
-        	<td colspan="2" height="50px" style="border:none; margin:10px; "><center><font size="+2" face="MS Serif, New York, serif">
-			<b><?php echo $penyakit;?></b> Dan termasuk dalam kategori 
-			<font size="+2" face="MS Serif, New York, serif"><b><?php echo $kategori;?></center></td>
-        </tr>
     </br>
-    	<tr>
-        	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif">
-    Dengan gejala-gejala sebagai berikut :</br>
-    </font>
-    </td>
-    </tr>
-    
+       
    
     <?php 
 	$jml=COUNT($gejala);	
@@ -101,28 +90,21 @@ $nilai_cf=_hit_cf($_GET['id']);
     <tr>
     	<td colspan="2" height="30px" style="border:none;"></td>
     </tr>
+    
     <tr>
-    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif">Solusi :</font></td>
+    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif">Nilai CF Untuk Per-Kategori:</font></td>
     </tr>
     <tr>
-    	<td height="30px" style="border:none;"></td>
-        <td height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif"><center><?php echo $solusi;?></center></font></td>
+    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif"><?php echo $nilai_cf[0];?></font></td>
     </tr>
-    <tr>
-    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif">Obat :</font></td>
+	<tr>
+    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif"><?php echo $nilai_cf[1];?></font></td>
     </tr>
-    <tr>
-    	<td height="30px" style="border:none;"></td>
-        <td height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif"><center><?php echo $obat;?></center></font></td>
+	<tr>
+    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif"><?php echo $nilai_cf[2];?></font></td>
     </tr>
-    <tr>
-    	<td colspan="2" height="30px" style="border:none;"></td>
-    </tr>
-    <tr>
-    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif">Nilai CF :</font></td>
-    </tr>
-    <tr>
-    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif"><center><?php echo $nilai_cf;?></center></font></td>
+	<tr>
+    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif"><?php echo $nilai_cf[3];?></font></td>
     </tr>
     <tr>
     	<td colspan="2" height="30px" style="border:none;"><a href='action_hasil.php?id=<?php echo  $_GET['id'];?>&nilai=<?php echo $nilai_cf;?>' class='btn  btn-block btn-large' /> <H1>Simpan Hasil Diagnosa</H1> </a></td>

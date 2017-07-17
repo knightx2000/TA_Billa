@@ -271,7 +271,7 @@ function _tampil_email_user($id){
 
 function _tampil_gejala($id){
 		$respon="";
-		if (!empty($id)){
+		//if (!empty($id)){
 			/*$sql="select nama_gejala from tb_gejala where id_gejala='".$id."'";
 			$result=mysql_query($sql);
 			$data=mysql_fetch_array($result);
@@ -284,7 +284,7 @@ function _tampil_gejala($id){
 				$respon[]=$data['id_gejala'];
 			}
 			
-		}
+		//}
 		
 		return $respon;
 }
@@ -538,6 +538,58 @@ function _hit_cf($id_penyakit){
 	return $nilai_final;
 }
 
+function _hit_cf2(){
+	$sqlTest="select tb_penyakit.id_penyakit,tb_penyakit.nama_penyakit from tb_penyakit where id_penyakit like 'P%'";
+	$resultTest=mysql_query($sqlTest)or die(mysql_error());
+	$count = 0;
+	while($dataTest=mysql_fetch_array($resultTest)){
+		$sql2="select tb_gejala.nilai_cf from tb_gejala,tb_diagnosa,tb_aturan where tb_diagnosa.id_gejala=tb_gejala.id_gejala AND tb_gejala.id_gejala=tb_aturan.id_gejala AND tb_aturan.id_penyakit = '".$dataTest['id_penyakit']."'";
+		$resultTest2=mysql_query($sql2)or die(mysql_error());
+		$tempnilai="";
+		$i=0;
+		//$jml_data=mysql_num_rows($result);
+		$hasil="";
+		$nilai="";
+		$hasil_akhir="";
+		//print_r($dataTest['id_penyakit']."\n");
+		while($dataTest2=mysql_fetch_array($resultTest2)){
+			$nilai[]=$dataTest2['nilai_cf'];
+			//print_r($dataTest2['nilai_cf']);
+		}
+		$jml_data=count($nilai)-1;
+		$z=0;
+		for($x=0;$x<=$jml_data;$x++){
+			
+			if($x==0){
+				$hasil_akhir[]=$nilai[$x]+($nilai[$x+1]*(1-$nilai[$x]));//nilai awal
+				$z=0;
+				$x=$x+1;
+			}else{
+				//$z=$x+1
+				//echo $x;
+				$z=count($hasil_akhir)-1;
+				//echo $z;
+				$hasil_akhir[]=$nilai[$x]+($hasil_akhir[$z]*(1-$nilai[$x]));
+		
+			}
+
+		}
+		
+		$nilai_final=0;
+		$jml_ar=count($hasil_akhir);
+		if($jml_ar<=1){
+			$nilai_final=$hasil_akhir[0];
+		}else{
+			$nilai_final=$hasil_akhir[$jml_ar-1];
+		}
+		//echo "Nilai CF ".$dataTest['id_penyakit']." = ".$nilai_final;
+		//echo "hasil =".$hasil;
+		//return $nilai_final;
+		$hasilCF[$count] = $dataTest['nama_penyakit']." = ".$nilai_final;
+		$count = $count+1;
+	}
+	return $hasilCF;
+}
 function konversi_bulan($bln) {
 	switch($bln) {
 		case "1" :

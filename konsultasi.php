@@ -1,9 +1,41 @@
 <?php
 	include("inc/koneksi.php")
 ?>
+		
+<?php
+
+$sqltruncate = "TRUNCATE TABLE `tb_diagnosa`";
+$ekse = mysql_query($sqltruncate);
+
+if(isset($_GET['id'])){
+	$param="G";
+	$sql="select * from tb_gejala order by id_gejala Asc";
+	$result=mysql_query($sql);
+	//$data=mysql_fetch_assoc($result);
+}
+
+if(isset($_POST['update'])){	
+	$jmlAr=COUNT($_POST['chk']);
+	for($i=0;$i<$jmlAr;$i++){
+		$sql_s="insert into tb_diagnosa(id_gejala)values('".$_POST['chk'][$i]."')";
+		mysql_query($sql_s);
+	}
+	$_SESSION ['add']='<div class="alert alert-success"> Data berhasil disimpan </div>';
+	header('Location: hasil2.php'); 
+}
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US"><head><!-- Created by Artisteer v4.3.0.60745 -->
-    <meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-wysihtml5-0.0.2.css">
+        <link rel="stylesheet" type="text/css" href="css/datepicker.css">
+        <link rel="stylesheet" type="text/css" href="css/docs.css">
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="js/wysihtml5-0.3.0_rc2.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap-wysihtml5-0.0.2.min.js"></script>
     <title>Implementasi Sistem Pakar 
 untuk Diagnosis Penyakit Hipertensi 
 dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
@@ -64,153 +96,43 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
                 <div class="art-content-layout">
                     <div class="art-content-layout-row">
                         <div class="art-layout-cell art-content"><article class="art-post art-article">
-                                <div class="art-postcontent art-postcontent-0 clearfix"><p>
-                                <?php
-								//$selected_options = explode(",", $_POST["id_gejala"]);
-								//$prev_gejala = $selected_options[0];
-								//$prev_selected = $selected_options[1];
-								//$curr_gejala = $selected_options[2];
-								//echo ($selected_options[0]."\n");
-								//echo ($selected_options[1]."\n");
-								//echo ($selected_options[2]."\n");
-								
-								//if(isset($_POST['SubmitButton'])){ //check if form was submitted
-								//  $input = $_POST['id_gejala']; //get input text
-								  //$message = "Success! You entered: ".$input;
-								  //echo ($message);
-								//}    
-								if(!isset($_POST['id_gejala'])){
-									$sqltruncate = "TRUNCATE TABLE `tb_diagnosa`";
-									$ekse = mysql_query($sqltruncate);
-
-									$sql="select * from tb_gejala where mulai='Y'";
-									$result=mysql_query($sql);
-									$data=mysql_fetch_array($result);
-																		
-									echo "<form method='post'>";
-									//echo "<legend>DIAGNOSA <small> Mari mulai Mendiagnosa </small></legend>";
-									echo "<center>";
-									echo '</br><div class=" well">';
-									echo "<h1>Apakah pasien / anda mengalami ".$data['nama_gejala']."?</h1></center><br>";
-									echo '</div>';
-			
-		
-			// echo "<input type='radio' name='idpertanyaan' value='".$data['bila_benar']."'>Ya<br>";
-			// echo "<input type='radio' name='idpertanyaan' value='".$data['bila_salah']."'>Tidak<br>";
-			// echo "<input type='submit' value='Lanjut ' >";		
-			// echo "</form>";
-			
-
-									echo '
-										<div class="span5"> <div class="alert alert-info">
-										<div class="control-group "> 
-										<div class="controls" style="margin-left:150px;">
-									';
-
-									echo "<input type='radio' name='id_gejala' value='".$data['id_gejala'].','."ya".','.$data['jika_ya']."'>Benar<br>";
-											echo '
-										</div>
-										</div>
-										</div>
-										</div>
-										<div class="span5"> <div class="alert alert-warning">
-										<div class="control-group "> 
-										<div class="controls" style="margin-left:150px;">
-									';
-									echo "<input type='radio' name='id_gejala' value='".$data['id_gejala'].','."tidak".','.$data['jika_tidak']."'>Tidak<br>";
-									echo '
-									</div>
-									</div>
-									</div>
-									</div>';
-			
-									echo "<input type='submit' name='SubmitButton' class='btn btn-primary btn-block btn-large' value='Lanjut ' >";
-									
-								}else{
-									$selected_options = explode(",", $_POST["id_gejala"]);
-									$prev_gejala = $selected_options[0];
-									$prev_selected = $selected_options[1];
-									$curr_gejala = $selected_options[2];
-									//echo ($selected_options[0]."\n");
-									//echo ($selected_options[1]."\n");
-									//echo ($selected_options[2]."\n");
-									
-									$idsolusi=$curr_gejala;
-									
-									if($prev_selected == "ya"){
-										$sqlinsert = "INSERT INTO `hipertensiexpertsystem`.`tb_diagnosa` (`id_aturan`, `id_gejala`) VALUES ('', '".$prev_gejala."')";
-										$ekse=mysql_query($sqlinsert);
-									}
-									
-									$sqlp = "select * from tb_gejala where id_gejala='".$idsolusi."'";
-									$rs=mysql_query($sqlp);
-
-									$data=mysql_fetch_array($rs);
-			
-									echo "<form method='post'>";
-									//echo "<legend>DIAGNOSA <small> Mari mulai Mendiagnosa </small></legend>";
-									echo "<center>";
-									echo '</br><div class=" well">';
-									echo "<h1>Apakah anda mengalami ".$data['nama_gejala']."?</h1></center><br>";
-									echo '</div>';
-									// echo "<a href='' class='btn btn-success btn-large btn-block' /> Kembali Melakukan Diagnosa </a>";
-
-									//if($data['selesai']!="Y"){
-									if(ereg("P",$_POST['id_gejala'])){
-										$selected_options = explode(",", $_POST["id_gejala"]);
-										$prev_gejala = $selected_options[0];
-										$prev_selected = $selected_options[1];
-										$curr_gejala = $selected_options[2];
-									
-										echo '<script> window.location.href="hasil.php?id='.$curr_gejala.'" </script>';
-										echo "<a href='konsultasi.php' class='btn  btn-block btn-large' /> <H1>Kembali Melakukan Diagnosa</H1> </a>
-										";
-										
-				
-									}else{
-										//if(ereg("P",$_POST['id_gejala'])){
-										/*echo '<script> window.location.href="hasil.php?id='.$_POST['id_gejala'].'" </script>';
-										echo "<a href='konsultasi.php' class='btn  btn-block btn-large' /> <H1>Kembali Melakukan Diagnosa</H1> </a>
-										";*/
-										//echo "hohoho";	
-										//}else{
-											
-										echo '
-											<div class="span5"> <div class="alert alert-info">
-											<div class="control-group "> 
-											<div class="controls" style="margin-left:150px;">
-										';
-
-										echo "<input type='radio' name='id_gejala' value='".$data['id_gejala'].','."ya".','.$data['jika_ya']."'>Benar<br>";
-										echo '
-										</div>
-										</div>
-										</div>
-										</div>
-										<div class="span5"> <div class="alert alert-warning">
-										<div class="control-group "> 
-										<div class="controls" style="margin-left:150px;">
-										';
-										echo "<input type='radio' name='id_gejala' value='".$data['id_gejala'].','."tidak".','.$data['jika_tidak']."'>Tidak<br>";
-										echo '
-										</div>
-										</div>
-										</div>
-										</div>';
-										
-										if(ereg("Z",$_POST['id_gejala']))
-										{
-											echo '<script> window.location.href="hasil1.php?id='.$_POST['id_gejala'].'" </script>';
-											echo "<a href='konsultasi.php' class='btn  btn-block btn-large' /> <H1>Kembali Melakukan Diagnosa</H1> </a>
-											";
+								<form class="form-horizontal" id="frm_aturan" name="frm_aturan" action="konsultasi.php?list=<?php echo $_GET['list'];?>&id=<?php echo $_GET['id'];?>" method="post">
+										<input type="hidden" name="list" value="<?php echo $_GET['list'];?>" />
+										<input type="hidden" name="id_penyakit" value="<?php echo $_GET['id'];?>" />
+									<table class="table table-bordered">
+										<thead>
+											<th></th>
+											<th>Gejala</th>
+										</thead>
+									<tbody>
+									<?php
+										$ck="";
+										$sql="select * from tb_gejala order by id_gejala Asc";
+										$result=mysql_query($sql);
+										while($data=mysql_fetch_object($result)){
+										//$sql_cek="select id_aturan from tb_aturan where id_penyakit='".$_GET['id']."' and id_gejala='".$data->id_gejala."'";
+										//$sql_cek="select id_aturan from tb_aturan where id_penyakit='".$_GET['id']."' and id_gejala='".$data->id_gejala."'";
+										//$result_cek=mysql_query($sql_cek);
+										// $data_cek=mysql_num_rows($result_cek);
+										$data_cek=0;
+										if($data_cek>0){
+												$ck="checked";	
+											}else{
+												$ck="";	
 										}
-										echo "<input type='submit' name='SubmitButton' class='btn btn-primary btn-block btn-large' value='Lanjut ' >";
-										//}
-									}
-									echo "</form>";		
-									
-								}
-								?>
+									?>
+										<tr>
+											<td style="width:10px;"><input style="padding-right:0px;" type="checkbox" name="chk[]" onClick="pilih_semua()" title="Pilih" value='<?php echo $data->id_gejala;?>' <?php echo $ck;?>/></td>
+											<td><?php echo $data->nama_gejala;?></td>
+										</tr>
+								   <?php };?>
+										<tr>
+											<td colspan="4"><input class="btn btn-primary" value=" Submit " name="update" type="submit" />
+											<a href="index.php" class="btn btn-primary">Kembali</a></td>
+										</tr>
+									</tbody>
+									</table>
+							</form>
                                 
                                 <br/></p></div>
                                 
