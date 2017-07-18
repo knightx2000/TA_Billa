@@ -123,7 +123,7 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 									?>
 										<tr>
 											<td style="width:10px;"><input style="padding-right:0px;" type="checkbox" name="chk[]" onClick="pilih_semua()" title="Pilih" value='<?php echo $data->id_gejala;?>' <?php echo $ck;?>/></td>
-											<td><?php echo $data->nama_gejala;?></td>
+											<td><h4><?php echo $data->nama_gejala;?></h4></td>
 										</tr>
 								   <?php };?>
 										<tr>

@@ -92,7 +92,7 @@ $nilai_cf=_hit_cf2($_GET['id']);
     </tr>
     
     <tr>
-    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif">Nilai CF Untuk Per-Kategori:</font></td>
+    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif">Nilai CF Untuk Per-Klasifikasi Penyakit Hipertensi:</font></td>
     </tr>
     <tr>
     	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif"><?php echo $nilai_cf[0];?></font></td>
@@ -105,6 +105,9 @@ $nilai_cf=_hit_cf2($_GET['id']);
     </tr>
 	<tr>
     	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif"><?php echo $nilai_cf[3];?></font></td>
+    </tr>
+	<tr>
+    	<td colspan="2" height="30px" style="border:none;"></td>
     </tr>
     <tr>
     	<td colspan="2" height="30px" style="border:none;"><a href='action_hasil.php?id=<?php echo  $_GET['id'];?>&nilai=<?php echo $nilai_cf;?>' class='btn  btn-block btn-large' /> <H1>Simpan Hasil Diagnosa</H1> </a></td>
