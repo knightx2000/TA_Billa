@@ -492,7 +492,8 @@ function _hit_cf($id_penyakit){
 	*/
 	///////////////////////////////////////////////
 	//$sql="select tb_gejala.nilai_cf from tb_gejala,tb_aturan where tb_aturan.id_penyakit='".$id_penyakit."' AND tb_aturan.id_gejala=tb_gejala.id_gejala";
-	$sql="select tb_gejala.nilai_cf from tb_gejala,tb_diagnosa where tb_diagnosa.id_gejala=tb_gejala.id_gejala";
+	//$sql="select tb_gejala.nilai_cf from tb_gejala,tb_diagnosa where tb_diagnosa.id_gejala=tb_gejala.id_gejala";
+	$sql="select tb_gejala.nilai_cf from tb_gejala,tb_diagnosa,tb_aturan where tb_diagnosa.id_gejala=tb_gejala.id_gejala AND tb_gejala.id_gejala=tb_aturan.id_gejala AND tb_aturan.id_penyakit = '".$id_penyakit."'";
 	$result=mysql_query($sql)or die(mysql_error());
 	$tempnilai="";
 	$i=0;

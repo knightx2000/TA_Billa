@@ -1,5 +1,6 @@
 <?php
-	include("inc/koneksi.php")
+	include("inc/koneksi.php");
+	include("inc/function.php");
 ?>
 		
 <?php
@@ -14,6 +15,12 @@ if(isset($_GET['id'])){
 	//$data=mysql_fetch_assoc($result);
 }
 
+if(isset($_GET['id_penyakit'])){
+	$id_penyakit_before=$_GET['id_penyakit'];
+}else{
+	$id_penyakit_before='P000004';
+}
+
 if(isset($_POST['update'])){	
 	$jmlAr=COUNT($_POST['chk']);
 	for($i=0;$i<$jmlAr;$i++){
@@ -21,7 +28,24 @@ if(isset($_POST['update'])){
 		mysql_query($sql_s);
 	}
 	$_SESSION ['add']='<div class="alert alert-success"> Data berhasil disimpan </div>';
-	header('Location: hasil2.php'); 
+	$nilai_cf=_hit_cf($id_penyakit_before);
+	if((float)$nilai_cf<0.5){
+		$id_next='';
+		if($id_penyakit_before=='P000004'){
+			$id_next = 'P000003';
+			$id_penyakit_before = 'P000003';
+		}else if($id_penyakit_before=='P000003'){
+			$id_next = 'P000002';
+			$id_penyakit_before = 'P000002';
+		}else if($id_penyakit_before=='P000002'){
+			$id_next = 'P000001';
+			$id_penyakit_before = 'P000001';
+		}else if($id_penyakit_before=='P000001'){
+			header("Location: hasil1.php"); 
+		}
+	}else{
+		header("Location: hasil2.php?id_penyakit=".$id_penyakit_before); 
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -96,9 +120,10 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
                 <div class="art-content-layout">
                     <div class="art-content-layout-row">
                         <div class="art-layout-cell art-content"><article class="art-post art-article">
-								<form class="form-horizontal" id="frm_aturan" name="frm_aturan" action="konsultasi.php?list=<?php echo $_GET['list'];?>&id=<?php echo $_GET['id'];?>" method="post">
+								<form class="form-horizontal" id="frm_aturan" name="frm_aturan" action="konsultasi.php?id_penyakit=<?php echo $id_penyakit_before;?>" method="post">
 										<input type="hidden" name="list" value="<?php echo $_GET['list'];?>" />
 										<input type="hidden" name="id_penyakit" value="<?php echo $_GET['id'];?>" />
+										<input type="hidden" name="id_penyakit_before" value="<?php echo $_GET['id_penyakit_before'];?>" />
 									<table class="table table-bordered">
 										<thead>
 											<th></th>
@@ -107,7 +132,8 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 									<tbody>
 									<?php
 										$ck="";
-										$sql="select * from tb_gejala order by id_gejala Asc";
+										//$sql="select * from tb_gejala order by id_gejala Asc";
+										$sql="select * from tb_gejala a,tb_aturan b where a.id_gejala = b.id_gejala and b.id_penyakit = '".$id_penyakit_before."' order by a.id_gejala Asc";
 										$result=mysql_query($sql);
 										while($data=mysql_fetch_object($result)){
 										//$sql_cek="select id_aturan from tb_aturan where id_penyakit='".$_GET['id']."' and id_gejala='".$data->id_gejala."'";
@@ -122,7 +148,7 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 										}
 									?>
 										<tr>
-											<td style="width:10px;"><input style="padding-right:0px;" type="checkbox" name="chk[]" onClick="pilih_semua()" title="Pilih" value='<?php echo $data->id_gejala;?>' <?php echo $ck;?>/></td>
+											<td style="width:10px;"><input style="padding-right:0px;" type="checkbox" name="chk[]" title="Pilih" value='<?php echo $data->id_gejala;?>' <?php echo $ck;?>/></td>
 											<td><h4><?php echo $data->nama_gejala;?></h4></td>
 										</tr>
 								   <?php };?>
