@@ -665,4 +665,20 @@ function tampil_tanggal($time) {
 	return $tmp;
 }
 
+function _cariResiko($cf){
+	$resiko = " ";
+	if ((double)$cf <= 0.1)
+		$resiko = "Tidak Tahu";
+	elseif ((double)$cf <= 0.4)
+		$resiko = "Mungkin";
+	elseif ((double)$cf <= 0.7)
+		$resiko = "Lebih Mungkin";
+	elseif ((double)$cf <= 0.9)
+		$resiko = "Sangat Mungkin";
+	elseif ((double)$cf <= 1)
+		$resiko = "Sudah Dipastikan";
+	
+	return $resiko;
+}
+
 ?>

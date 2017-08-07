@@ -67,6 +67,7 @@ $gejala=_tampil_gejala($_GET['id']);
 $solusi=_tampil_solusi($_GET['id']);
 $obat=_tampil_obat($_GET['id']);
 $nilai_cf=_hit_cf($id_penyakit_before);
+$resiko = _cariResiko($nilai_cf);
 ?>
 <div class="container">
 <center>
@@ -74,7 +75,7 @@ $nilai_cf=_hit_cf($id_penyakit_before);
 	<table style="border:none;">
     	<tr>
 			<td colspan="2" height="50px" style="border:none; margin:10px; "><font size="+2" face="MS Serif, New York, serif">
-			   Dari gejala yang anda pilih sebelumnya dapat kami simpulkan bahwa pasien anda mengalami : <?php echo $penyakit ?> dengan probabilitas : <?php echo $nilai_cf*100;?>% </font>
+			   Dari gejala yang anda pilih sebelumnya dapat kami simpulkan bahwa pasien anda mengalami : <?php echo $penyakit ?> dengan level resiko : <?php echo $resiko ?> ( <?php echo $nilai_cf*100;?>% ) </font>
 			</td>
         </tr>
     <tr>
