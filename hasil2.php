@@ -54,7 +54,7 @@
                 <div class="art-content-layout">
                     <div class="art-content-layout-row">
                         <div class="art-layout-cell art-content"><article class="art-post art-article">
-                                <h2 class="art-postheader">Hasil Diagnosa</h2>
+                                <h2 class="art-postheader">Hasil Diagnosis</h2>
                                                 
                                 <div class="art-postcontent art-postcontent-0 clearfix"><p><br/></p></div>
                                 
@@ -75,7 +75,7 @@ $resiko = _cariResiko($nilai_cf);
 	<table style="border:none;">
     	<tr>
 			<td colspan="2" height="50px" style="border:none; margin:10px; "><font size="+2" face="MS Serif, New York, serif">
-			   Dari gejala yang anda pilih sebelumnya dapat kami simpulkan bahwa pasien anda mengalami : <?php echo $penyakit ?> dengan level resiko : <?php echo $resiko ?> ( <?php echo $nilai_cf*100;?>% ) </font>
+			   Dari gejala yang anda pilih sebelumnya dapat kami simpulkan bahwa pasien anda mengalami : <?php echo $penyakit ?> dengan level resiko : <?php echo $resiko ?> ( <?php echo number_format($nilai_cf*100,2); ?> % ) </font>
 			</td>
         </tr>
     <tr>
@@ -99,17 +99,17 @@ $resiko = _cariResiko($nilai_cf);
     </tr>
     
     <tr>
-    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif">Nilai CF Untuk Penyakit <?php echo $penyakit ?> : <?php echo $nilai_cf;?></font></td>
+    	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif">Nilai CF Untuk Penyakit <?php echo $penyakit ?> : <?php echo substr($nilai_cf, 0, ((strpos($nilai_cf, '.')+1)+2));?></font></td>
     </tr>
   
 	<tr>
     	<td colspan="2" height="30px" style="border:none;"></td>
     </tr>
     <tr>
-    	<td colspan="2" height="30px" style="border:none;"><a href='action_hasil.php?id=<?php echo  $_GET['id'];?>&nilai=<?php echo $nilai_cf;?>' class='btn  btn-block btn-large' /> <H1>Simpan Hasil Diagnosa</H1> </a></td>
+    	<td colspan="2" height="30px" style="border:none;"><a href='action_hasil.php?id=<?php echo  $_GET['id_penyakit'];?>&nilai=<?php echo $nilai_cf;?>' class='btn  btn-block btn-large' /> <H1>Simpan Hasil Diagnosis</H1> </a></td>
     </tr>
     <tr>
-    	<td colspan="2" height="30px" style="border:none;"><a href='konsultasi.php' class='btn  btn-block btn-large' /> <H1>Kembali Melakukan Diagnosa</H1> </a></td>
+    	<td colspan="2" height="30px" style="border:none;"><a href='konsultasi.php' class='btn  btn-block btn-large' /> <H1>Kembali Melakukan Diagnosis</H1> </a></td>
     </tr>
     </table>
 </div>

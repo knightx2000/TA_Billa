@@ -56,7 +56,7 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
                 <div class="art-content-layout">
                     <div class="art-content-layout-row">
                         <div class="art-layout-cell art-content"><article class="art-post art-article">
-                                <h2 class="art-postheader">Hasil Diagnosa</h2>
+                                <h2 class="art-postheader">Hasil Diagnosis</h2>
                                                 
                                 <div class="art-postcontent art-postcontent-0 clearfix"><p><br/></p></div>
                                 
@@ -79,7 +79,7 @@ $gejala=_tampil_gejala($_GET['id']);
         </tr>
     </br>
     	
-    	<td colspan="2" height="30px" style="border:none;"><a href='konsultasi.php' class='btn  btn-block btn-large' /> <H3>Kembali Melakukan Diagnosa</H3> </a></td>
+    	<td colspan="2" height="30px" style="border:none;"><a href='konsultasi.php' class='btn  btn-block btn-large' /> <H3>Kembali Melakukan Diagnosis</H3> </a></td>
     </tr>
     </table>
 </div>

@@ -54,7 +54,7 @@
                 <div class="art-content-layout">
                     <div class="art-content-layout-row">
                         <div class="art-layout-cell art-content"><article class="art-post art-article">
-                                <h2 class="art-postheader">Hasil Diagnosa</h2>
+                                <h2 class="art-postheader">Hasil Diagnosis</h2>
                                                 
                                 <div class="art-postcontent art-postcontent-0 clearfix"><p><br/></p></div>
                                 
@@ -125,10 +125,10 @@ $nilai_cf=_hit_cf($_GET['id']);
     	<td colspan="2" height="30px" style="border:none;"><font size="+2" face="MS Serif, New York, serif"><center><?php echo $nilai_cf;?></center></font></td>
     </tr>
     <tr>
-    	<td colspan="2" height="30px" style="border:none;"><a href='action_hasil.php?id=<?php echo  $_GET['id'];?>&nilai=<?php echo $nilai_cf;?>' class='btn  btn-block btn-large' /> <H1>Simpan Hasil Diagnosa</H1> </a></td>
+    	<td colspan="2" height="30px" style="border:none;"><a href='action_hasil.php?id=<?php echo  $_GET['id'];?>&nilai=<?php echo $nilai_cf;?>' class='btn  btn-block btn-large' /> <H1>Simpan Hasil Diagnosis</H1> </a></td>
     </tr>
     <tr>
-    	<td colspan="2" height="30px" style="border:none;"><a href='konsultasi.php' class='btn  btn-block btn-large' /> <H1>Kembali Melakukan Diagnosa</H1> </a></td>
+    	<td colspan="2" height="30px" style="border:none;"><a href='konsultasi.php' class='btn  btn-block btn-large' /> <H1>Kembali Melakukan Diagnosis</H1> </a></td>
     </tr>
     </table>
 </div>

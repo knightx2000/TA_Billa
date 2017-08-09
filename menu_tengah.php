@@ -28,17 +28,17 @@
     </div>
     <div class="art-layout-cell layout-item-3" style="width: 33%" >
         <p style="text-align: center;"><img width="195" height="128" alt="" src="images/pet3-2.png" class=""></p>
-        <h2 style="text-align: center;">Diagnosa</h2>
+        <h2 style="text-align: center;">Diagnosis</h2>
         <p style="text-align: center;">Konsultasi Dengan Sistem Pakar Diagnosis Hipertensi.</p>
         <?php if(isset($_SESSION['s_id_user'])){
 					if(empty($_SESSION['s_id_user'])){?>
-        				<p style="text-align: center;"><a href="login.php" class="art-button">Mulai Diagnosa</a></p>
+        				<p style="text-align: center;"><a href="login.php" class="art-button">Mulai Diagnosis</a></p>
        <?php			}else{?>
-       					<p style="text-align: center;"><a href="konsultasi.php" class="art-button">Mulai Diagnosa</a></p>
+       					<p style="text-align: center;"><a href="konsultasi.php" class="art-button">Mulai Diagnosis</a></p>
        <?php 
 	   			}
 	   }else{?>
-       				<p style="text-align: center;"><a href="login.php" class="art-button">Mulai Diagnosa</a></p>
+       				<p style="text-align: center;"><a href="login.php" class="art-button">Mulai Diagnosis</a></p>
        <?php };?>
     </div>
     </div>
