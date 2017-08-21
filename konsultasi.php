@@ -20,6 +20,7 @@ if(isset($_GET['id_penyakit'])){
 }else{
 	$id_penyakit_before='P000004';
 }
+$nm_penyakit = _tampil_nama_penyakit($id_penyakit_before);
 
 if(isset($_POST['update'])){	
 	$jmlAr=COUNT($_POST['chk']);
@@ -127,7 +128,7 @@ dengan Metode Certainty Factor dan Forward Chaining Berbasis Web</title>
 									<table class="table table-bordered">
 										<thead>
 											<th></th>
-											<th>Gejala</th>
+											<th>Gejala <?php echo $nm_penyakit;?></th>
 										</thead>
 									<tbody>
 									<?php
