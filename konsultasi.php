@@ -35,12 +35,15 @@ if(isset($_POST['update'])){
 		if($id_penyakit_before=='P000004'){
 			$id_next = 'P000003';
 			$id_penyakit_before = 'P000003';
+			$nm_penyakit = _tampil_nama_penyakit($id_penyakit_before);
 		}else if($id_penyakit_before=='P000003'){
 			$id_next = 'P000002';
 			$id_penyakit_before = 'P000002';
+			$nm_penyakit = _tampil_nama_penyakit($id_penyakit_before);
 		}else if($id_penyakit_before=='P000002'){
 			$id_next = 'P000001';
 			$id_penyakit_before = 'P000001';
+			$nm_penyakit = _tampil_nama_penyakit($id_penyakit_before);
 		}else if($id_penyakit_before=='P000001'){
 			header("Location: hasil1.php"); 
 		}
